@@ -1,4 +1,10 @@
 from selenium import webdriver
+from app.application import Application
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver import Chrome
+#from selenium.webdriver.chrome.service import Service
+#from selenium.webdriver.chrome.options import Options
+
 
 
 def browser_init(context):
@@ -11,6 +17,7 @@ def browser_init(context):
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
+    context.app = Application(context.driver)
 
 
 def before_scenario(context, scenario):
