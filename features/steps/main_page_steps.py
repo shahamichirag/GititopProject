@@ -16,6 +16,16 @@ def enter_product_search_field(context, product):
     context.app.header.enter_product_search_field(product)
 
 
+@when('click on laptop category')
+def click_laptop_category(context):
+    context.app.header.click_laptop_category()
+
+
+# @when('Click on category links on the header')
+# def click_category_link(context):
+#     context.app.header.click_category_link()
+
+
 @then('user can sees all UI elements related to search')
 def verify_search_ui_elements(context):
     context.app.header.verify_search_ui_elements()
