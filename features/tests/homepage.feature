@@ -1,6 +1,7 @@
 # Created by shaha at 9/22/2022
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Available links on homepage test cases
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+
+  Scenario: User can go through available links on homepage
+  Given Open Gittop page
+  Then user can click on category links on the header and see relevant result

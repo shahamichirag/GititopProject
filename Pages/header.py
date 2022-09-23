@@ -10,6 +10,7 @@ class Header(Page):
     SEARCH_ICON = (By.XPATH, "//button[@value='Search']//i[@class='icon-search']")
     LAPTOP_CATEGORY = (By.ID,'menu-item-468')
     CATEGORY_LINKS = (By.CSS_SELECTOR, "a.nav-top-link[href*='https://gettop.us/product-category']")
+    CATEGORY_PAGE_TITLE = (By.CSS_SELECTOR,'.woocommerce-breadcrumb.breadcrumbs.uppercase')
 
     def open_gittop_page(self):
         self.driver.get('https://gettop.us/')
@@ -34,13 +35,17 @@ class Header(Page):
     def click_laptop_category(self):
         self.find_element(*self.LAPTOP_CATEGORY).click()
 
-    # def click_category_link(self):
-    #     all_links = self.find_element(*self.CATEGORY_LINKS)
-    #     print(all_links)
-    #     for i in range(len(all_links)):
-    #         link_to_click = self.driver.find_elements(*self.CATEGORY_LINKS)[i]
-    #         link_to_click.click()
-
+    def click_category_link(self):
+        all_links = self.find_elements(*self.CATEGORY_LINKS)
+        for i in range(len(all_links)):
+            link_to_click = self.find_elements(*self.CATEGORY_LINKS)[i]
+            link_text = 'HOME ' + '/ ' + link_to_click.text
+            print(link_text)
+            link_to_click.click()
+            header_text = self.find_element(*self.CATEGORY_PAGE_TITLE).text
+            print(header_text)
+            if link_text in header_text:
+                return True
 
 
 

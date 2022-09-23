@@ -21,3 +21,8 @@ def user_can_shuffle_images(context):
     context.app.search_result_page.user_can_shuffle_images()
 
 
+@then('user can see thumbnail images by clicking on it')
+def user_can_see_thumbnail_image(context):
+    context.app.search_result_page.user_can_see_thumbnail_image()
+
+

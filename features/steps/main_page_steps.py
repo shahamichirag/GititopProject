@@ -21,9 +21,9 @@ def click_laptop_category(context):
     context.app.header.click_laptop_category()
 
 
-# @when('Click on category links on the header')
-# def click_category_link(context):
-#     context.app.header.click_category_link()
+@then('user can click on category links on the header and see relevant result')
+def click_category_link(context):
+    context.app.header.click_category_link()
 
 
 @then('user can sees all UI elements related to search')

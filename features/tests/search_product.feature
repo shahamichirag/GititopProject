@@ -20,3 +20,4 @@ Feature: Search functionality test cases
      When Hover over a search icon
      When  Enter coffee in search input field
      Then User can see an error message for irrelevant search
+
