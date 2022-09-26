@@ -10,6 +10,11 @@ class Searchresult(Page):
     IMAGE_SLIDER = (By.CSS_SELECTOR,"figure[class*='product-gallery-slider'] button.flickity-button.flickity-prev-next-button.next")
     FIRST_PRODUCT = (By.CSS_SELECTOR, '.title-wrapper')
     THUMBNAIL_IMAGES = (By.CSS_SELECTOR, "div.col div[aria-selected='false'] img.attachment-woocommerce_thumbnail")
+    FACEBOOK_LINK = (By.XPATH, "//div[@class='social-icons share-icons share-row relative']//i[@class='icon-facebook']")
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.original_window = None
 
     def verify_product_search_result(self, product_result):
         expected_result = f'HOME / SHOP / SEARCH RESULTS FOR “{product_result}”'
@@ -37,3 +42,17 @@ class Searchresult(Page):
             image_to_click = self.find_elements(*self.THUMBNAIL_IMAGES)[i]
             image_to_click.click()
 
+    def store_window(self):
+        self.original_window = self.driver.current_window_handle
+        print('original window:', self.original_window)
+
+    def click_facebook_link(self):
+        self.driver.find_element(*self.FACEBOOK_LINK).click()
+
+    def switch_to_new_window(self):
+        self.new_window_is_opened()
+        new_window = self.driver.window_handles[1]
+        self.driver.switch_to.window(new_window)
+
+    def switch_to_original_window(self):
+        self.driver.switch_to.window(self.original_window)
