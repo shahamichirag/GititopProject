@@ -1,10 +1,9 @@
 from behave import given, when, then
-from time import sleep
+
 
 @given('Open Gittop page')
 def open_gittop_page(context):
     context.app.header.open_gittop_page()
-
 
 
 @when('Hover over a search icon')

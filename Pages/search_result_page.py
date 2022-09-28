@@ -24,6 +24,7 @@ class Searchresult(Page):
     def verify_error_message_unavailable_product(self):
         expected_result = "No products were found matching your selection."
         actual_result = self.find_element(*self.ERROR_MESSAGE).text
+        print(actual_result)
         assert expected_result == actual_result, f'Expected to see {expected_result} but got {actual_result}'
 
     def click_first_product_laptop(self):

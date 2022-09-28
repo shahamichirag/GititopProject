@@ -23,9 +23,7 @@ class Header(Page):
         self.driver.find_element(*self.SEARCH_ICON_HEADER)
 
     def hover_search_icon_in_header(self):
-        sleep(12)
         search_icon = self.wait.until(EC.presence_of_element_located(self.SEARCH_ICON_HEADER))
-        sleep(12)
         actions = ActionChains(self.driver)
         actions.move_to_element(search_icon)
         actions.perform()
@@ -39,8 +37,6 @@ class Header(Page):
 
     def click_laptop_category(self):
         self.wait.until(EC.presence_of_element_located(self.LAPTOP_CATEGORY)).click()
-        # sleep(24)
-        #self.wait.until(EC.element_to_be_clickable(self.LAPTOP_CATEGORY)).click()
 
     def click_category_link(self):
         all_links = self.find_elements(*self.CATEGORY_LINKS)
