@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from Pages.base_page import Page
+from time import sleep
 
 
 class Header(Page):
@@ -15,13 +16,16 @@ class Header(Page):
     def open_gittop_page(self):
         self.driver.get('https://gettop.us/')
 
+
     def verify_search_ui_elements(self):
         self.driver.find_element(*self.SEARCH_FIELD)
         self.driver.find_element(*self.SEARCH_ICON)
         self.driver.find_element(*self.SEARCH_ICON_HEADER)
 
     def hover_search_icon_in_header(self):
+        sleep(12)
         search_icon = self.wait.until(EC.presence_of_element_located(self.SEARCH_ICON_HEADER))
+        sleep(12)
         actions = ActionChains(self.driver)
         actions.move_to_element(search_icon)
         actions.perform()
@@ -30,10 +34,13 @@ class Header(Page):
         self.wait.until(
             EC.presence_of_element_located(self.SEARCH_FIELD)
         ).send_keys(product)
+        sleep(12)
         self.click(*self.SEARCH_ICON)
 
     def click_laptop_category(self):
-        self.find_element(*self.LAPTOP_CATEGORY).click()
+        self.wait.until(EC.presence_of_element_located(self.LAPTOP_CATEGORY)).click()
+        # sleep(24)
+        #self.wait.until(EC.element_to_be_clickable(self.LAPTOP_CATEGORY)).click()
 
     def click_category_link(self):
         all_links = self.find_elements(*self.CATEGORY_LINKS)

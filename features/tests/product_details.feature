@@ -8,6 +8,10 @@ Feature: Product preview images test cases
     When Click on the first product of laptop category
     Then user can shuffle through product images using image slider
 
+  Scenario: User can go through available links on homepage
+    Given Open Gittop page
+    Then user can click on category links on the header and see relevant result
+
   Scenario: user can see thumbnail images in product page
     Given Open Gittop page
     When click on laptop category
