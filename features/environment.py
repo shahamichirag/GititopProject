@@ -3,7 +3,7 @@ from app.application import Application
 #from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 #from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.service import Service
+#from selenium.webdriver.chrome.service import Service
 
 
 def browser_init(context, test_name):
@@ -44,12 +44,12 @@ def browser_init(context, test_name):
     #OTHER WAY TO RUN TEST CASES FOR MOBILE EMULATION USING CHROME BROWSER IS AS BELOW:
     #IMPORT SERVICE TO EXECUTE THIS CODE
 
-    options = webdriver.ChromeOptions()
-    service = Service('./chromedriver.exe')
-    mobile_emulation = {"deviceName": "Nexus 5"}
-    options.add_experimental_option("mobileEmulation", mobile_emulation)
-    context.driver = webdriver.Chrome(chrome_options=options, service=service)
-    context.app = Application(context.driver)
+    # options = webdriver.ChromeOptions()
+    # service = Service('./chromedriver.exe')
+    # mobile_emulation = {"deviceName": "Nexus 5"}
+    # options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # context.driver = webdriver.Chrome(chrome_options=options, service=service)
+    # context.app = Application(context.driver)
 
     #ABOVE CODE ENDS HERE
 
@@ -85,30 +85,29 @@ def browser_init(context, test_name):
     #ABOVE CODE FOR BROWSER STACK FOR CROSS BROWSER TESTING IS OVER HERE
 
     # BROWSERSTACK CODE for mobile emulation
-
-
-    # bs_user = 'amishah_TSPaqC'
-    # bs_key = 'S4apnHKzZMFz9wd9kJwY'
-    #
     # desired_cap = {
     #     "os_version": "16",
     #     "device": "iPhone 14"
     # }
 
-    # desired_cap = {
-    #         "os_version": "9.0",
-    #         "device": "Google Pixel 3",
-    #       #  "name": "test_name"
-    #
-    #     }
+    bs_user = 'amishah_TSPaqC'
+    bs_key = 'S4apnHKzZMFz9wd9kJwY'
 
-    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
-    #
-    # context.driver.maximize_window()
-    # context.driver.implicitly_wait(5)
-    # context.driver.wait = WebDriverWait(context.driver, 10)
-    # context.app = Application(context.driver)
+    desired_cap = {
+        'bstack:options': {
+            "osVersion": "9.0",
+            "deviceName": "Google Pixel 3",
+            "realMobile": "true",
+            "local": "false",
+        },
+    }
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+
+    context.driver.maximize_window()
+    context.driver.implicitly_wait(5)
+    context.driver.wait = WebDriverWait(context.driver, 10)
+    context.app = Application(context.driver)
 
    #ABOVE CODE FOR MOBILE EMULATION+BROWSER STACK IS OVER HERE
 
