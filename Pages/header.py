@@ -43,7 +43,7 @@ class Header(Page):
         for i in range(len(all_links)):
             link_to_click = self.find_elements(*self.CATEGORY_LINKS)[i]
             link_text = 'HOME ' + '/ ' + link_to_click.text
-            print(link_text)
+            sleep(12)
             link_to_click.click()
             header_text = self.find_element(*self.CATEGORY_PAGE_TITLE).text
             print(header_text)

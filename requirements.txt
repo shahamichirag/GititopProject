@@ -1,2 +1,5 @@
 behave
 selenium
+allure-behave
+apium
+apium-dev
